@@ -127,19 +127,29 @@ module.exports = {
     }
 
     feedbacks["status"] = {
-      type: "boolean",
-      name: "Change Button Color If status is true",
-      description: "If status is true, set the button to this color.",
-      defaultStyle: {
-        color: PolarNight0,
-        bgcolor: auroraOrange,
-      },
+      type: "advanced",
+      name: "Projector Status",
+      description: "Changes button color based on projector status.",
+      options: [],
       callback: function () {
-        if (self.getVariableValue("status") === "Imaging") {
-          return true;
+        let status = self.getVariableValue("status");
+        if (status !== undefined) {
+          status = status.trim();
         }
-
-        return false;
+        switch (status) {
+          case "Standby":
+            return { color: combineRgb(0xff, 0xff, 0xff), bgcolor: combineRgb(0x22, 0x22, 0x22) };
+          case "Warmup":
+            return { color: combineRgb(0xff, 0xff, 0x00), bgcolor: combineRgb(0x44, 0x22, 0x00) };
+          case "Imaging":
+            return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0x00, 0xff, 0x00) };
+          case "Cooling":
+            return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0x77, 0x77, 0xff) };
+          case "Error":
+            return { color: combineRgb(0xff, 0xff, 0xff), bgcolor: combineRgb(0xff, 0x00, 0x00) };
+          default:
+            return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0xff, 0x00, 0xff) };
+        }
       },
     };
 

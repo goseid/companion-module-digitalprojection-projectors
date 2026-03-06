@@ -50,6 +50,40 @@ module.exports = {
     const auroraPurple = combineRgb(175, 152, 219);
 
     let instanceId = self.label;
+
+    // Power preset with status feedback
+    presets.push({
+      type: "button",
+      category: element_name + "Control - ToggleList",
+      name: element_name + "Power",
+      style: {
+        text: "Proj\\nPower\\n$(" + instanceId + ":" + element_name + "status)",
+        size: "14",
+        color: combineRgb(0xff, 0xff, 0xff),
+        bgcolor: combineRgb(0x22, 0x22, 0x22),
+      },
+      steps: [
+        {
+          down: [],
+          up: [
+            {
+              actionId: element_name + "Power On",
+            },
+          ],
+          2000: [
+            {
+              actionId: element_name + "Power Off",
+            },
+          ],
+        },
+      ],
+      feedbacks: [
+        {
+          feedbackId: "status",
+        },
+      ],
+    });
+
     let reducedModel = reduceModel(model, self);
     if (reducedModel) {
       reducedModel.forEach((command) => {
