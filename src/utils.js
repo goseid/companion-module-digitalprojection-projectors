@@ -257,7 +257,7 @@ module.exports = {
       let model;
       let dataArray = incomingData.trim().split("=", 2); //split the data into an array
       if (dataArray.length < 2 || !dataArray[0].split(" ")[1]) {
-        self.log("debug", "skipping non-standard response: " + incomingData);
+        self.log("warn", "skipping non-standard response: " + incomingData);
         return;
       }
       let rawArgument = dataArray[0].split(" ")[1].replace(/[\s*]/g, "");

@@ -144,7 +144,7 @@ module.exports = {
           case "Imaging":
             return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0x00, 0xff, 0x00) };
           case "Cooling":
-            return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0x77, 0x77, 0xff) };
+            return { color: combineRgb(0x00, 0x00, 0x00), bgcolor: combineRgb(0xaa, 0xaa, 0xff) };
           case "Error":
             return { color: combineRgb(0xff, 0xff, 0xff), bgcolor: combineRgb(0xff, 0x00, 0x00) };
           default:
